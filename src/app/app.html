@@ -1,0 +1,33 @@
+<nav class="top-navbar">
+  <div class="nav-brand">🎟️ ConcertApp</div>
+
+  <div class="nav-links">
+    @if (!authService.getUserRole()) {
+      <a routerLink="/login" routerLinkActive="active">Connexion</a>
+      <a routerLink="/register" routerLinkActive="active">Inscription</a>
+    }
+
+    @if (authService.getUserRole() === 'CLIENT') {
+      <a routerLink="/client/dashboard" routerLinkActive="active">Trouver un Concert</a>
+      <a routerLink="/client/tickets" routerLinkActive="active">Mes Billets</a> 
+    }
+
+    @if (authService.getUserRole() === 'MANAGER') {
+      <a routerLink="/manager/dashboard" routerLinkActive="active">Mes Événements</a>
+    }
+
+    @if (authService.getUserRole() === 'ADMIN') {
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Tableau de Bord Admin</a>
+    }
+  </div>
+
+  <div class="nav-actions">
+    @if (authService.getUserRole()) {
+      <button class="logout-btn" (click)="logout()">Déconnexion</button>
+    }
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

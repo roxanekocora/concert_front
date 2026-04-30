@@ -1,0 +1,60 @@
+<div class="form-container">
+  <h2>Inscription Client</h2>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input id="nom" type="text" formControlName="nom" placeholder="Votre nom">
+        @if (registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched) {
+          <small class="error-text">Le nom est obligatoire.</small>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input id="prenom" type="text" formControlName="prenom" placeholder="Votre prénom">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="exemple@mail.com">
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <small class="error-text">Veuillez entrer un email valide.</small>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="tel">Téléphone</label>
+       <input id="telephone" type="tel" formControlName="telephone" placeholder="06XXXXXXXX">
+
+      </div>
+
+      <div class="form-group">
+        <label for="date_naiss">Date de naissance</label>
+        <input id="date_naissance" type="date" formControlName="date_naissance">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mdp">Mot de passe</label>
+    <input id="password" type="password" formControlName="password" placeholder="6 caractères minimum">
+      @if (registerForm.get('mdp')?.invalid && registerForm.get('mdp')?.touched) {
+        <small class="error-text">Le mot de passe doit faire au moins 6 caractères.</small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Créer mon compte</button>
+  </form>
+
+  <p class="footer-link">
+    Déjà inscrit ? <a routerLink="/login">Connectez-vous</a>
+  </p>
+</div>

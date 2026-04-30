@@ -1,0 +1,68 @@
+<div class="form-container">
+  <h2>Ajouter un Manager</h2>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+  @if (successMessage) {
+    <div class="success-banner">{{ successMessage }}</div>
+  }
+
+  <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input id="nom" type="text" formControlName="nom" placeholder="Nom">
+        @if (managerForm.get('nom')?.invalid && managerForm.get('nom')?.touched) {
+          <small class="error-text">Le nom est obligatoire.</small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input id="prenom" type="text" formControlName="prenom" placeholder="Prénom">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="exemple@mail.com">
+      @if (managerForm.get('email')?.invalid && managerForm.get('email')?.touched) {
+        <small class="error-text">Veuillez entrer un email valide.</small>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input id="telephone" type="tel" formControlName="telephone" placeholder="06XXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label for="date_naissance">Date de naissance</label>
+        <input id="date_naissance" type="date" formControlName="date_naissance">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="manager_agence">Agence</label>
+      <input id="manager_agence" type="text" formControlName="manager_agence" placeholder="Nom de l'agence">
+      @if (managerForm.get('manager_agence')?.invalid && managerForm.get('manager_agence')?.touched) {
+        <small class="error-text">L'agence est obligatoire.</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" formControlName="password" placeholder="6 caractères minimum">
+      @if (managerForm.get('password')?.invalid && managerForm.get('password')?.touched) {
+        <small class="error-text">Le mot de passe doit faire au moins 6 caractères.</small>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="button" routerLink="/admin/dashboard">Retour</button>
+      <button type="submit" [disabled]="managerForm.invalid">Créer le manager</button>
+    </div>
+
+  </form>
+</div>

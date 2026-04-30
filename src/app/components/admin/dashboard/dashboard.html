@@ -1,0 +1,16 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Dashboard Admin</h1>
+    <div class="user-info">
+      <span>Bonjour {{ nom }} {{ prenom }}</span>
+      <button (click)="logout()">Se déconnecter</button>
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+    <div class="card" routerLink="/admin/manager-form">
+      <h2>👤 Ajouter un Manager</h2>
+      <p>Créer un nouveau compte manager</p>
+    </div>
+  </main>
+</div>

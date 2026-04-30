@@ -1,0 +1,81 @@
+/* --- La barre de navigation globale --- */
+.top-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1976d2; /* Bleu principal */
+  color: white;
+  padding: 0 2rem;
+  height: 64px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Le logo / Nom du site */
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Conteneur des liens au centre */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Style des liens */
+.nav-links a {
+  color: #e3f2fd; /* Bleu très clair */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Effet au survol */
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+/* Style pour le lien de la page active (géré par RouterLinkActive) */
+.nav-links a.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* Bouton de déconnexion */
+.logout-btn {
+  background-color: #d32f2f; /* Rouge */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* --- Conteneur principal pour les pages --- */
+.main-content {
+  max-width: 1200px; /* Largeur max de l'application */
+  margin: 2rem auto; /* Centré avec une marge en haut */
+  padding: 0 1rem;
+}
