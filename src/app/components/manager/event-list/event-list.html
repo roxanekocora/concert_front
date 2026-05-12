@@ -1,0 +1,35 @@
+@if (isLoading) {
+  <div class="empty-state">
+    <p>Chargement...</p>
+  </div>
+} @else if (events.length === 0) {
+  <div class="empty-state">
+    <p>Aucun événement pour le moment.</p>
+  </div>
+} @else {
+  <div class="events-grid">
+    @for (event of events; track event.eventId) {
+      <div class="event-card">
+        <div class="event-header">
+          <h3>{{ event.nom }}</h3>
+          <span [class]="getStatutClass(event.statut_concert)">
+            {{ event.statut_concert === 'ATTENTE_VALIDATION' ? '⏳ En attente' :
+               event.statut_concert === 'VALIDE' ? '✅ Validé' : '❌ Refusé' }}
+          </span>
+        </div>
+        <p>🎤 {{ event.artiste }}</p>
+        <p>📍 {{ event.lieu }}</p>
+        <p>📅 {{ event.dateConcert }}</p>
+        <p>🎵 {{ event.genreMusical }}</p>
+        <p>🎟️ {{ event.nbPlaceDispo }} places — {{ event.prix_ticket }}€</p>
+        <div class="event-actions">
+          <button class="btn-danger"
+                  (click)="supprimerEvent(event.eventId)"
+                  [disabled]="event.statut_concert === 'VALIDE'">
+            🗑️ Supprimer
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+}

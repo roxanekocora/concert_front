@@ -1,0 +1,154 @@
+/* --- Conteneur principal du formulaire --- */
+.form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* --- Bannière d'erreur générale (erreur API par ex) --- */
+.error-banner {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #c62828;
+  font-size: 0.95rem;
+}
+
+/* --- Groupes de champs (Label + Input) --- */
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555555;
+  font-size: 0.9rem;
+}
+
+/* --- Champs de saisie --- */
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fafafa;
+}
+
+/* Effet au clic (Focus) sur les inputs */
+.form-group input:focus {
+  outline: none;
+  border-color: #1976d2; /* Bleu par défaut, change-le selon ta charte graphique */
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+  background-color: #ffffff;
+}
+
+/* --- Textes d'erreur sous les inputs --- */
+.error-text {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* Pour mettre les bordures en rouge quand il y a une erreur 
+   (Optionnel : nécessite l'ajout dynamique d'une classe .ng-invalid.ng-touched sur l'input) */
+.form-group input.ng-invalid.ng-touched {
+  border-color: #d32f2f;
+}
+
+/* --- Bouton de soumission --- */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  background-color: #1976d2; /* Couleur principale */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Effet au survol du bouton */
+button[type="submit"]:hover:not([disabled]) {
+  background-color: #1565c0;
+}
+
+/* Effet au clic */
+button[type="submit"]:active:not([disabled]) {
+  transform: scale(0.98);
+}
+
+/* Style quand le formulaire est invalide (Bouton désactivé) */
+button[type="submit"][disabled] {
+  background-color: #b0bec5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Responsivité (Mobiles) --- */
+@media (max-width: 600px) {
+  .form-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}/* Bouton retour */
+
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.form-actions button[type="button"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffffff;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form-actions button[type="button"]:hover {
+  background-color: #e3f2fd;
+}
+
+.form-actions button[type="submit"] {
+  margin-top: 0;
+}
+
+/* Bannière succès */
+.success-banner {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #2e7d32;
+  font-size: 0.95rem;
+}

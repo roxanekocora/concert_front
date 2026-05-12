@@ -1,0 +1,152 @@
+.list-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.list-header h2 {
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.list-header button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.list-header button:hover {
+  background-color: #e3f2fd;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.event-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.event-header h3 {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.event-card p {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.statut-valide {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statut-refuse {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.statut-attente {
+  background-color: #fff8e1;
+  color: #f57f17;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.event-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.btn-valider {
+  flex: 1;
+  padding: 8px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-valider:hover {
+  background-color: #1b5e20;
+}
+
+.btn-refuser {
+  flex: 1;
+  padding: 8px;
+  background-color: #c62828;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-refuser:hover {
+  background-color: #b71c1c;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #777;
+}
+
+.error-banner {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #c62828;
+}
+
+.success-banner {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #2e7d32;
+}

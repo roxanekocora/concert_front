@@ -1,0 +1,50 @@
+<div class="list-container">
+  <header class="list-header">
+    <h2>🎵 Gestion des événements</h2>
+    <button routerLink="/admin/dashboard">← Retour au dashboard</button>
+  </header>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+  @if (successMessage) {
+    <div class="success-banner">{{ successMessage }}</div>
+  }
+
+  @if (isLoading) {
+    <div class="empty-state"><p>Chargement...</p></div>
+  } @else if (events.length === 0) {
+    <div class="empty-state"><p>Aucun événement pour le moment.</p></div>
+  } @else {
+    <div class="events-grid">
+      @for (event of events; track event.eventId) {
+        <div class="event-card">
+          <div class="event-header">
+            <h3>{{ event.nom }}</h3>
+            <span [class]="getStatutClass(event.statut_concert)">
+              {{ event.statut_concert === 'ATTENTE_VALIDATION' ? '⏳ En attente' :
+                 event.statut_concert === 'VALIDE' ? '✅ Validé' : '❌ Refusé' }}
+            </span>
+          </div>
+          <p>🎤 {{ event.artiste }}</p>
+          <p>📍 {{ event.lieu }}</p>
+          <p>📅 {{ event.dateConcert }}</p>
+          <p>🎵 {{ event.genreMusical }}</p>
+          <p>🎟️ {{ event.nbPlaceDispo }} places</p>
+          <p>💶 {{ event.prix_ticket ?? 'Non défini' }}€</p>
+
+          @if (event.statut_concert === 'ATTENTE_VALIDATION') {
+            <div class="event-actions">
+              <button class="btn-valider" (click)="valider(event.eventId)">
+                ✅ Valider
+              </button>
+              <button class="btn-refuser" (click)="refuser(event.eventId)">
+                ❌ Refuser
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

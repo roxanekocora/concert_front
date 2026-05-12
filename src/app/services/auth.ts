@@ -49,6 +49,6 @@ export class Auth {
   }
   
   registerManager(managerData: any) {
-  return this.http.post(`${this.apiUrl}/manager/inscription`, managerData);
+  return this.http.post(`${this.apiUrl}/manager/ajouter`, managerData);
 }
 }

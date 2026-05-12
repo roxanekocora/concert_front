@@ -1,0 +1,71 @@
+<div class="form-container">
+  <h2>Créer un événement</h2>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+  @if (successMessage) {
+    <div class="success-banner">{{ successMessage }}</div>
+  }
+
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nom">Nom de l'événement</label>
+        <input id="nom" type="text" formControlName="nom" placeholder="Nom du concert">
+        @if (eventForm.get('nom')?.invalid && eventForm.get('nom')?.touched) {
+          <small class="error-text">Le nom est obligatoire.</small>
+        }
+      </div>
+      <div class="form-group">
+        <label for="artiste">Artiste</label>
+        <input id="artiste" type="text" formControlName="artiste" placeholder="Nom de l'artiste">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input id="description" type="text" formControlName="description" placeholder="Description de l'événement">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="lieu">Lieu</label>
+        <input id="lieu" type="text" formControlName="lieu" placeholder="Lieu du concert">
+      </div>
+      <div class="form-group">
+        <label for="dateConcert">Date du concert</label>
+        <input id="dateConcert" type="date" formControlName="dateConcert">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="genreMusical">Genre musical</label>
+        <input id="genreMusical" type="text" formControlName="genreMusical" placeholder="Jazz, Rock...">
+      </div>
+      <div class="form-group">
+        <label for="nbPlaceDispo">Nombre de places</label>
+        <input id="nbPlaceDispo" type="number" formControlName="nbPlaceDispo" placeholder="100">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="dureeConcert">Durée (minutes)</label>
+        <input id="dureeConcert" type="number" formControlName="dureeConcert" placeholder="90">
+      </div>
+      <div class="form-group">
+        <label for="prix_ticket">Prix du ticket (€)</label>
+        <input id="prix_ticket" type="number" formControlName="prix_ticket" placeholder="25">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" routerLink="/manager/dashboard">Retour</button>
+      <button type="submit" [disabled]="eventForm.invalid">Créer l'événement</button>
+    </div>
+
+  </form>
+</div>
