@@ -38,11 +38,6 @@
         <p class="section-label">Programmation</p>
         <h2 class="section-title">Concerts à venir</h2>
       </div>
-      <form [formGroup]="searchForm" (ngSubmit)="rechercherParDate()" class="search-bar">
-        <input type="date" formControlName="date" placeholder="Rechercher par date">
-        <button type="submit">Rechercher</button>
-        <button type="button" (click)="searchForm.reset(); chargerConcerts()">✕</button>
-      </form>
     </div>
 
     @if (isLoading) {
