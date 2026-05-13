@@ -1,0 +1,53 @@
+<div class="page-container">
+  <header class="page-header">
+    <h1>🎵 Concerts à venir</h1>
+    @if (!isLoggedIn) {
+      <div class="auth-links">
+        <a routerLink="/login">Se connecter</a>
+        <a routerLink="/register" class="btn-register">S'inscrire</a>
+      </div>
+    } @else {
+      <a routerLink="/client/dashboard" class="btn-register">Mon espace</a>
+    }
+  </header>
+
+  <!-- Recherche par date -->
+  <div class="search-bar">
+    <form [formGroup]="searchForm" (ngSubmit)="rechercherParDate()">
+      <input type="date" formControlName="date">
+      <button type="submit">🔍 Rechercher</button>
+      <button type="button" (click)="reset()">✖ Réinitialiser</button>
+    </form>
+  </div>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+
+  @if (isLoading) {
+    <div class="empty-state"><p>Chargement...</p></div>
+  } @else if (concerts.length === 0) {
+    <div class="empty-state"><p>Aucun concert disponible pour le moment.</p></div>
+  } @else {
+    <div class="concerts-grid">
+      @for (concert of concerts; track concert.eventId) {
+        <div class="concert-card">
+          <div class="concert-genre">{{ concert.genreMusical }}</div>
+          <h2>{{ concert.nom }}</h2>
+          <p class="artiste">🎤 {{ concert.artiste }}</p>
+          <p>📍 {{ concert.lieu }}</p>
+          <p>📅 {{ concert.dateConcert }}</p>
+          <p>⏱️ {{ concert.dureeConcert }} min</p>
+          <p class="description">{{ concert.description }}</p>
+          <div class="concert-footer">
+            <span class="prix">{{ concert.prix_ticket ?? '?' }}€</span>
+            <span class="places">{{ concert.nbPlaceDispo }} places</span>
+            <button (click)="acheter(concert.eventId)">
+              🎟️ Acheter
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

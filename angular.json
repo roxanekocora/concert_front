@@ -72,15 +72,15 @@
               "buildTarget": "concert_front:build:production"
             },
             "options": {
-            "proxyConfig": "proxy.conf.json"
-          },
+              "proxyConfig": "proxy.conf.json"
+            },
             "development": {
               "buildTarget": "concert_front:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
-          
+
         "test": {
           "builder": "@angular/build:unit-test"
         }

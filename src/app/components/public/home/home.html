@@ -1,0 +1,131 @@
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">🎵 Billetterie en ligne</span>
+      <h1>La musique<br>vivante, <em>en direct</em></h1>
+      <p>Découvrez les meilleurs concerts, réservez vos places et vivez des expériences inoubliables.</p>
+      <div class="hero-actions">
+        <a href="#concerts" class="btn-primary">Explorer les concerts</a>
+        @if (!isLoggedIn) {
+          <a routerLink="/register" class="btn-secondary">Créer un compte</a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">{{ concerts.length }}+</div>
+      <div class="stat-label">Concerts disponibles</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Billets garantis</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Support client</div>
+    </div>
+  </div>
+
+  <!-- CONCERTS -->
+  <section class="concerts-section" id="concerts">
+    <div class="section-top">
+      <div>
+        <p class="section-label">Programmation</p>
+        <h2 class="section-title">Concerts à venir</h2>
+      </div>
+      <form [formGroup]="searchForm" (ngSubmit)="rechercherParDate()" class="search-bar">
+        <input type="date" formControlName="date" placeholder="Rechercher par date">
+        <button type="submit">Rechercher</button>
+        <button type="button" (click)="searchForm.reset(); chargerConcerts()">✕</button>
+      </form>
+    </div>
+
+    @if (isLoading) {
+      <div class="empty-state"><p>Chargement des concerts...</p></div>
+    } @else if (concerts.length === 0) {
+      <div class="empty-state"><p>Aucun concert disponible pour le moment.</p></div>
+    } @else {
+      <div class="concerts-grid">
+        @for (concert of concerts; track concert.eventId) {
+          <div class="concert-card">
+            <div class="card-top">
+              <span class="genre-badge">{{ concert.genreMusical }}</span>
+              <span class="prix-badge">{{ concert.prix_ticket ?? '?' }}€</span>
+            </div>
+            <h3>{{ concert.nom }}</h3>
+            <p class="artiste">{{ concert.artiste }}</p>
+            <p>📍 {{ concert.lieu }}</p>
+            <p>📅 {{ concert.dateConcert }}</p>
+            <p>⏱ {{ concert.dureeConcert }} min</p>
+            <p class="description">{{ concert.description }}</p>
+            <div class="card-divider"></div>
+            <div class="card-footer">
+              <div class="places-left">
+                <span>{{ concert.nbPlaceDispo }}</span> places restantes
+              </div>
+              <button class="btn-acheter"
+                      (click)="acheter(concert.eventId)"
+                      [disabled]="concert.nbPlaceDispo === 0">
+                Réserver
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <p class="section-label">Pourquoi nous choisir</p>
+      <h2 class="section-title">L'expérience concert<br>réinventée</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <span class="about-icon">🎵</span>
+          <h3>Large programmation</h3>
+          <p>Jazz, Rock, Afro, Soul — des concerts dans tous les genres musicaux partout en France.</p>
+        </div>
+        <div class="about-card">
+          <span class="about-icon">🎟️</span>
+          <h3>Réservation instantanée</h3>
+          <p>Achetez vos billets en quelques secondes et recevez votre confirmation immédiate.</p>
+        </div>
+        <div class="about-card">
+          <span class="about-icon">🔒</span>
+          <h3>100% sécurisé</h3>
+          <p>Vos données sont protégées et chaque billet est authentifié et garanti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-brand-name">🎟 <span>Concert</span>App</div>
+        <p>La billetterie en ligne simple, rapide et sécurisée pour tous les amateurs de musique live.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="#concerts">Concerts</a>
+        <a routerLink="/login">Connexion</a>
+        <a routerLink="/register">Inscription</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📞 01 23 45 67 89</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 ConcertApp — Tous droits réservés
+    </div>
+  </footer>
+
+</div>

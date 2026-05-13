@@ -1,81 +1,79 @@
-/* --- La barre de navigation globale --- */
 .top-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1976d2; /* Bleu principal */
-  color: white;
-  padding: 0 2rem;
-  height: 64px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 1rem 3rem;
+  background: rgba(8, 8, 16, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-body);
 }
 
-/* Le logo / Nom du site */
 .nav-brand {
+  font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
-/* Conteneur des liens au centre */
+.nav-brand span { color: var(--accent); }
+
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 2rem;
 }
 
-/* Style des liens */
 .nav-links a {
-  color: #e3f2fd; /* Bleu très clair */
   text-decoration: none;
+  color: var(--text-muted);
   font-weight: 500;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  transition: color 0.3s ease;
-  position: relative;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  letter-spacing: 0.3px;
 }
 
-/* Effet au survol */
-.nav-links a:hover {
-  color: #ffffff;
-}
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); }
 
-/* Style pour le lien de la page active (géré par RouterLinkActive) */
-.nav-links a.active {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.nav-links a.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #ffffff;
-  border-radius: 2px;
-}
-
-/* Bouton de déconnexion */
-.logout-btn {
-  background-color: #d32f2f; /* Rouge */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+.btn-register {
+  padding: 8px 22px;
+  background: var(--accent);
+  color: white !important;
+  border-radius: 100px;
   font-weight: 600;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-register:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.logout-btn {
+  padding: 8px 22px;
+  background: transparent;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
 }
 
 .logout-btn:hover {
-  background-color: #b71c1c;
+  border-color: var(--accent);
+  color: var(--accent) !important;
 }
 
-/* --- Conteneur principal pour les pages --- */
-.main-content {
-  max-width: 1200px; /* Largeur max de l'application */
-  margin: 2rem auto; /* Centré avec une marge en haut */
-  padding: 0 1rem;
+.main-content { min-height: calc(100vh - 65px); }
+
+@media (max-width: 768px) {
+  .top-navbar { padding: 1rem; flex-wrap: wrap; gap: 1rem; }
+  .nav-links { gap: 1rem; flex-wrap: wrap; }
 }

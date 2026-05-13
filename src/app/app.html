@@ -1,27 +1,29 @@
 <nav class="top-navbar">
-  <div class="nav-brand">🎟️ ConcertApp</div>
+  <div class="nav-brand" routerLink="/">🎟️ <span>ConcertApp</span></div>
 
   <div class="nav-links">
+    <a routerLink="/">Accueil</a>
+
     @if (!authService.getUserRole()) {
       <a routerLink="/login" routerLinkActive="active">Connexion</a>
-      <a routerLink="/register" routerLinkActive="active">Inscription</a>
+      <a routerLink="/register" routerLinkActive="active" class="btn-register">S'inscrire</a>
     }
 
     @if (authService.getUserRole() === 'CLIENT') {
-      <a routerLink="/client/dashboard" routerLinkActive="active">Trouver un Concert</a>
-      <a routerLink="/client/tickets" routerLinkActive="active">Mes Billets</a> 
+      <a routerLink="/client/dashboard" routerLinkActive="active">Concerts</a>
+      <a routerLink="/client/tickets" routerLinkActive="active">Mes Billets</a>
     }
 
     @if (authService.getUserRole() === 'MANAGER') {
-      <a routerLink="/manager/dashboard" routerLinkActive="active">Mes Événements</a>
+      <a routerLink="/manager/dashboard" routerLinkActive="active">Mon Dashboard</a>
+      <a routerLink="/manager/event-list" routerLinkActive="active">Mes Événements</a>
     }
 
     @if (authService.getUserRole() === 'ADMIN') {
-      <a routerLink="/admin/dashboard" routerLinkActive="active">Tableau de Bord Admin</a>
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard Admin</a>
+      <a routerLink="/admin/event-list" routerLinkActive="active">Événements</a>
     }
-  </div>
 
-  <div class="nav-actions">
     @if (authService.getUserRole()) {
       <button class="logout-btn" (click)="logout()">Déconnexion</button>
     }

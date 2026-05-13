@@ -54,7 +54,7 @@ export class EventList implements OnInit {
   }
 
   refuser(eventId: number) {
-    this.eventService.validerEvent(eventId, this.adminId, 'REFUSE').subscribe({
+    this.eventService.validerEvent(eventId, this.adminId, 'ANNULE').subscribe({
       next: () => {
         this.successMessage = 'Événement refusé.';
         this.chargerEvents();
@@ -66,7 +66,7 @@ export class EventList implements OnInit {
   getStatutClass(statut: string): string {
     switch (statut) {
       case 'VALIDE': return 'statut-valide';
-      case 'REFUSE': return 'statut-refuse';
+      case 'ANNULE': return 'statut-refuse';
       default: return 'statut-attente';
     }
   }

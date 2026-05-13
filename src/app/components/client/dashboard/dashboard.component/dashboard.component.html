@@ -1,1 +1,57 @@
-<p>dashboard.component works!</p>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <div class="header-top">
+      <h1>🎵 Espace Client</h1>
+      <div class="user-info">
+        <span class="user-greeting">Bonjour <span>{{ nom }} {{ prenom }}</span></span>
+        <a routerLink="/client/tickets" class="btn-tickets">🎟️ Mes billets</a>
+        <button class="btn-logout" (click)="logout()">Déconnexion</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    @if (successMessage) {
+      <div class="success-banner">🎉 {{ successMessage }}</div>
+    }
+    @if (errorMessage) {
+      <div class="error-banner">{{ errorMessage }}</div>
+    }
+
+    <p class="section-label">Programmation</p>
+    <h2 class="section-title">Concerts disponibles</h2>
+
+    @if (isLoading) {
+      <div class="empty-state"><p>Chargement...</p></div>
+    } @else if (concerts.length === 0) {
+      <div class="empty-state"><p>Aucun concert disponible.</p></div>
+    } @else {
+      <div class="concerts-grid">
+        @for (concert of concerts; track concert.eventId) {
+          <div class="concert-card">
+            <div class="card-top">
+              <span class="genre-badge">{{ concert.genreMusical }}</span>
+              <span class="prix-badge">{{ concert.prix_ticket ?? '?' }}€</span>
+            </div>
+            <h3>{{ concert.nom }}</h3>
+            <p>🎤 {{ concert.artiste }}</p>
+            <p>📍 {{ concert.lieu }}</p>
+            <p>📅 {{ concert.dateConcert }}</p>
+            <p>{{ concert.description }}</p>
+            <div class="card-divider"></div>
+            <div class="card-footer">
+              <div class="places-left">
+                <strong>{{ concert.nbPlaceDispo }}</strong> places restantes
+              </div>
+              <button class="btn-acheter"
+                      (click)="acheterTicket(concert.eventId)"
+                      [disabled]="concert.nbPlaceDispo === 0">
+                Réserver
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

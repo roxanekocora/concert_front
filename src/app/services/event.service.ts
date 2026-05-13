@@ -21,24 +21,25 @@ export class EventService {
     return this.http.get<any>(`${this.apiUrl}/event/${eventId}`);
   }
 
-  // Admin - valider/refuser un event
-  modifierStatut(eventId: number, adminId: number, statut: string) {
-    return this.http.patch(
-      `${this.apiUrl}/event/${eventId}/statut?adminId=${adminId}&statut=${statut}`,
-      {}
-    );
-  }
 
  getAllEvents() {
     return this.http.get<any[]>(`${this.apiUrl}/event/all`);
     }
 
- validerEvent(eventId: number, adminId: number, statut: string) {
+  getEventsValides() {
+    return this.http.get<any[]>(`${this.apiUrl}/event/all`);
+  }
+
+  getEventsByDate(date: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/event/all/date?date=${date}`);
+  }
+
+  validerEvent(eventId: number, adminId: number, statut: string) {
     return this.http.patch(
-        `${this.apiUrl}/event/${eventId}/statut?adminId=${adminId}&statut=${statut}`,
-        {}
+      `${this.apiUrl}/event/${eventId}/statut?adminId=${adminId}&statut=${statut}`,
+      {}
     );
-    }
+  }
 
   // Supprimer un event
   supprimerEvent(eventId: number, managerId: number) {
