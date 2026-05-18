@@ -1,59 +1,127 @@
-# ConcertFront
+# ConcertApp — Frontend Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.4.
+Application web de billetterie en ligne pour la gestion et la réservation de concerts.
 
-## Development server
+---
 
-To start a local development server, run:
+## Prérequis
+
+Avant de lancer le projet, assure-toi d'avoir installé :
+
+- [Node.js](https://nodejs.org/) v18 ou supérieur
+- [npm](https://www.npmjs.com/) v9 ou supérieur
+- [Angular CLI](https://angular.io/cli) v17 ou supérieur
+
+```bash
+npm install -g @angular/cli
+```
+
+- Le **backend JAX-RS** doit tourner sur `http://localhost:8080`
+
+---
+
+## Installation et lancement
+
+### 1. Cloner le projet
+
+```bash
+git clone <url-du-repo>
+cd concert_front
+```
+
+### 2. Installer les dépendances
+
+```bash
+npm install
+```
+
+### 3. Lancer l'application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+L'application sera accessible sur **http://localhost:4200**
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+##  Configuration
 
-```bash
-ng generate component component-name
+L'URL du backend est configurée dans chaque service Angular (`src/app/services/`) :
+
+```typescript
+private apiUrl = 'http://localhost:8080';
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Si ton backend tourne sur un port différent, modifie cette valeur dans :
+- `src/app/services/auth.ts`
+- `src/app/services/event.service.ts`
+- `src/app/services/ticket.service.ts`
 
-```bash
-ng generate --help
+---
+
+## Fonctionnalités
+
+###  Page publique (sans connexion)
+- Consulter la liste des concerts disponibles
+- Voir les détails de chaque concert (artiste, lieu, date, prix, places)
+- Accéder au formulaire d'inscription / connexion
+
+### Espace Client
+- Créer un compte client
+- Se connecter / se déconnecter
+- Parcourir et réserver des billets pour des concerts
+- Consulter ses billets achetés
+
+###  Espace Manager
+- Se connecter avec un compte manager (créé par un admin)
+- Créer des événements (concerts)
+- Consulter la liste de ses événements avec leur statut
+- Supprimer un événement (si non validé)
+
+### Espace Admin
+- Connexion avec le compte admin par défaut (`admin@concert.com` / `admin123`)
+- Créer des comptes managers
+- Consulter tous les événements
+- Valider ou refuser les événements soumis par les managers
+
+---
+
+## Structure du projet
+
+```
+src/app/
+├── components/
+│   ├── public/          → Pages publiques (accueil, concerts)
+│   ├── auth/            → Connexion, inscription
+│   ├── client/          → Dashboard client, tickets
+│   ├── manager/         → Dashboard manager, événements
+│   └── admin/           → Dashboard admin, gestion managers/événements
+├── services/
+│   ├── auth.ts          → Authentification, gestion session
+│   ├── event.service.ts → Gestion des événements
+│   └── ticket.service.ts→ Gestion des billets
+└── guards/
+    ├── auth.guard.ts    → Protection des routes (connexion requise)
+    └── role.guard.ts    → Protection par rôle (CLIENT, MANAGER, ADMIN)
 ```
 
-## Building
+---
 
-To build the project run:
+##  Rôles utilisateurs
 
-```bash
-ng build
-```
+| Rôle | Accès | Création du compte |
+|---|---|---|
+| **CLIENT** | Réservation de billets | Inscription publique |
+| **MANAGER** | Gestion des événements | Créé par un Admin |
+| **ADMIN** | Gestion globale | Initialisé au démarrage du backend |
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+##  Technologies utilisées
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Angular 17+** — Framework frontend
+- **TypeScript** — Langage principal
+- **Angular Router** — Navigation et guards
+- **HttpClient** — Communication avec l'API REST
+- **Reactive Forms** — Gestion des formulaires
